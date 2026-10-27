@@ -1,6 +1,4 @@
-# Restful-Booker – API Testing (Postman + Newman + GitHub Actions)
-
-![API Tests](https://github.com/richardtripodi15-cmyk/booker-api-testing/actions/workflows/api-tests.yml/badge.svg)
+# Restful-Booker – API Testing
 
 API testing project for [Restful-Booker](https://restful-booker.herokuapp.com/apidoc/index.html), a public hotel booking API made for testing practice.
 
@@ -34,35 +32,15 @@ The tests are written in Postman and run automatically with Newman in GitHub Act
 | 03 - Booking E2E flow | 6 | Create, get, update, partial update, delete and verify deletion |
 | 04 - Negative tests | 5 | Invalid data and actions without token |
 
-## How to run
-
-**In Postman**
+## How to run, in postman you can verifiques
 
 1. Import the two files from the `collection` folder.
-2. Select the environment **Restful-Booker**.
-3. Open the collection and click **Run**.
+2. Select the environment Restful-Booker.
+3. Open the collection and click Run.
 
-**With Newman (command line)**
+## Why did I use Newman?
 
-```bash
-npm install -g newman newman-reporter-htmlextra
-newman run collection/restful-booker.postman_collection.json \
-  -e collection/restful-booker.postman_environment.json \
-  -r cli,htmlextra --reporter-htmlextra-export reports/api-test-report.html
-```
-
-**In GitHub Actions**
-
-The pipeline runs on every push to `main`. The HTML report is available in the **Artifacts** section of each run.
-
-## Results
-
-_To be completed after execution._
-
-## Related projects
-
-- [Manual testing on ParaBank](https://github.com/richardtripodi15-cmyk/manual_test_case)
-- E2E automation with Playwright + Python (in progress)
+The same requests could be sent with tools like cURL, but cURL only sends requests: it does not check the responses, share variables between requests or create reports. Newman runs the Postman collection exactly as it is, including all assertions and the E2E flow, so the tests I design in Postman are the same tests that run in the CI pipeline on every push. It also generates an HTML report that is stored as an artifact of each run.
 
 ## Author
 
