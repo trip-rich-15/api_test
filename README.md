@@ -1,7 +1,5 @@
 # Restful-Booker – API Testing (Postman + Newman + GitHub Actions)
 
-![API Tests](https://github.com/richardtripodi15-cmyk/booker-api-testing/actions/workflows/api-tests.yml/badge.svg)
-
 API testing project for [Restful-Booker](https://restful-booker.herokuapp.com/apidoc/index.html), a public hotel booking API made for testing practice.
 
 The tests are written in Postman and run automatically with Newman in GitHub Actions on every push.
@@ -42,19 +40,6 @@ The tests are written in Postman and run automatically with Newman in GitHub Act
 2. Select the environment **Restful-Booker**.
 3. Open the collection and click **Run**.
 
-**With Newman (command line)**
-
-```bash
-npm install -g newman newman-reporter-htmlextra
-newman run collection/restful-booker.postman_collection.json \
-  -e collection/restful-booker.postman_environment.json \
-  -r cli,htmlextra --reporter-htmlextra-export reports/api-test-report.html
-```
-
-**In GitHub Actions**
-
-The pipeline runs on every push to `main`. The HTML report is available in the **Artifacts** section of each run.
-
 ## Results
 
 **Execution: 2026-10-27 – 14 test cases – 11 passed, 3 failed.**
@@ -65,20 +50,7 @@ The pipeline runs on every push to `main`. The HTML report is available in the *
 | [BUG-02](bugs/BUG-02.md) | Missing required field returns 500 instead of 400 | Major |
 | [BUG-03](bugs/BUG-03.md) | Booking created with checkout before checkin | Major |
 
-### How known defects are handled in the pipeline
-
-The tests for these defects are not deleted. In the collection:
-
-- The correct check is marked as **skipped** with the bug ID, so it stays visible in the report.
-- A second check confirms the **current (wrong) behavior**.
-
-This keeps the pipeline green while the defects are open. If the API behavior changes (the bug is fixed or a new problem appears), the pipeline fails and the case must be reviewed.
-
 ## Why Newman
-
-The same requests could be sent with tools like cURL, but cURL only sends requests: it does not check the responses, share variables between requests or create reports. Newman runs the Postman collection exactly as it is, including all assertions and the E2E flow, so the tests I design in Postman are the same tests that run in the CI pipeline on every push. It also generates an HTML report that is stored as an artifact of each run.
-
-## Why did I use Newman?
 
 The same requests could be sent with tools like cURL, but cURL only sends requests: it does not check the responses, share variables between requests or create reports. Newman runs the Postman collection exactly as it is, including all assertions and the E2E flow, so the tests I design in Postman are the same tests that run in the CI pipeline on every push. It also generates an HTML report that is stored as an artifact of each run.
 
