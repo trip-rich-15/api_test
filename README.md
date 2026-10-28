@@ -1,5 +1,4 @@
-# Restful-Booker – API Testing (Postman + Newman + GitHub Actions)
-
+# Restful-Booker – API Testing
 API testing project for [Restful-Booker](https://restful-booker.herokuapp.com/apidoc/index.html), a public hotel booking API made for testing practice.
 
 The tests are written in Postman and run automatically with Newman in GitHub Actions on every push.
