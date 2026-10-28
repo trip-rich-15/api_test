@@ -2,7 +2,7 @@
 
 ## 1. Objective
 
-Verify that the Restful-Booker API manages bookings correctly: authentication, creation, query, update and deletion. Also verify that the API rejects invalid data and actions without permission.
+Verify that the Restful-Booker API manages bookings correctly authentication, creation, query, update and deletion. Also verify that the API rejects invalid data and actions without permission.
 
 ## 2. Scope
 
@@ -16,16 +16,10 @@ Verify that the Restful-Booker API manages bookings correctly: authentication, c
 - `PATCH /booking/{id}` – partial update
 - `DELETE /booking/{id}` – delete booking
 
-**Out of scope**
-
-- `GET /booking` with filters
-- Performance and load testing
-- Security testing (beyond basic authorization checks)
-
 ## 3. Test approach
 
 - **Reference:** the official API documentation is the contract. When the documentation defines a status code, the test uses that code.
-- **Validation rules:** when the documentation says nothing, the test uses common REST practice (for example, 400 for invalid data, 401 for invalid credentials).
+- **Validation rules:** when the documentation says nothing, the test uses common REST standar.
 - **Checks in every test:** status code and response time (below 5000 ms). Where it applies, also body values and data types.
 - **E2E flow:** the booking ID and the token are saved in variables and used by the next requests.
 - **Independent negative tests:** each negative test creates its own data, so it does not depend on other tests.
@@ -43,10 +37,8 @@ Verify that the Restful-Booker API manages bookings correctly: authentication, c
 ## 5. Test environment
 
 - API: https://restful-booker.herokuapp.com (public demo)
-- Tools: Postman, Newman, GitHub Actions (Node.js 20)
+- Tools: Postman, Newman, GitHub Actions (with Node.js)
 - Test data: created by the tests in each run
-
-Note: the demo can reset its data at any time and the first request can be slow. The tests create their own data to avoid this problem.
 
 ## 6. Entry criteria
 
